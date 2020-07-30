@@ -1,3 +1,11 @@
+from rest_framework import viewsets
+from rest_framework import authentication
+from .serializers import (
+    A01234567890123456789012345678901234567890123456789Serializer,
+    A01234567890123456789012345678901234567890123456789012345678901234567890123456789Serializer,
+    CustomTextSerializer,
+    HomePageSerializer,
+)
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAdminUser
@@ -11,7 +19,12 @@ from home.api.v1.serializers import (
     HomePageSerializer,
     UserSerializer,
 )
-from home.models import CustomText, HomePage
+from home.models import (
+    A01234567890123456789012345678901234567890123456789,
+    A01234567890123456789012345678901234567890123456789012345678901234567890123456789,
+    CustomText,
+    HomePage,
+)
 
 
 class SignupViewSet(ModelViewSet):
@@ -49,3 +62,25 @@ class HomePageViewSet(ModelViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = [IsAdminUser]
     http_method_names = ["get", "put", "patch"]
+
+
+class A01234567890123456789012345678901234567890123456789012345678901234567890123456789ViewSet(
+    viewsets.ModelViewSet
+):
+    serializer_class = A01234567890123456789012345678901234567890123456789012345678901234567890123456789Serializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = (
+        A01234567890123456789012345678901234567890123456789012345678901234567890123456789.objects.all()
+    )
+
+
+class A01234567890123456789012345678901234567890123456789ViewSet(viewsets.ModelViewSet):
+    serializer_class = A01234567890123456789012345678901234567890123456789Serializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = A01234567890123456789012345678901234567890123456789.objects.all()
